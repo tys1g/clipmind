@@ -40,3 +40,35 @@ struct History: Codable, Equatable {
             items.removeAll()
         }
 }
+
+struct HistoryFile {
+    let url: URL
+    
+    /// ~/Library/Application Support/Clipmind/history.json
+    static func defaultLocation() -> HistoryFile {
+        let base = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask).first!
+        return HistoryFile(url: base.appendingPathComponent("Clipmind/history.json"))
+    }
+    
+    /// if we can't get a file - return history, not error
+    func load() -> History {
+        guard let data = try? Data(contentsOf: url) else {
+            return History()
+        }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return (try? decoder.decode(History.self, from: data)) ?? History()
+    }
+    func save(_ history: History) throws {
+        try FileManager.default.createDirectory(
+            at: url.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = try encoder.encode(history)
+        
+        // .atomic: writing in temp file, soon changes. history alive after app down
+        try data.write(to: url, options: [.atomic])
+    }
+}
