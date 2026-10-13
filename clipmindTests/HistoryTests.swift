@@ -81,6 +81,55 @@ struct HistoryTests {
         decoder.dateDecodingStrategy = .iso8601
         let item = try decoder.decode(ClipItem.self, from: Data(json.utf8))
         #expect(item.type == .link)
+        #expect(item.isPinned == false)
+    }
+    
+    @Test func pinnedStayOnTop() {
+        var h = History()
+        h.add("a")
+        h.togglePin(id: h.items[0].id)
+        h.add("b")
+        h.add("c")
+        #expect(h.items.map(\.text) == ["a", "c", "b"])
+    }
+
+    @Test func limitKeepsPinned() {
+        var h = History(limit: 2)
+        h.add("pinned")
+        h.togglePin(id: h.items[0].id)
+        for i in 1...5 { h.add("\(i)") }
+        #expect(h.items.map(\.text) == ["pinned", "5", "4"])
+    }
+
+    @Test func unpinMovesBelowPins() {
+        var h = History()
+        h.add("a")
+        h.add("b")
+        h.togglePin(id: h.items[0].id) // b
+        h.togglePin(id: h.items[1].id) // a
+        h.togglePin(id: h.items[0].id) // снимаем a
+        #expect(h.items.map(\.text) == ["b", "a"])
+        #expect(h.items[1].isPinned == false)
+    }
+
+    @Test func duplicateOfPinnedStaysPinned() {
+        var h = History()
+        h.add("server")
+        h.togglePin(id: h.items[0].id)
+        h.add("other")
+        h.add("server")
+        #expect(h.items.map(\.text) == ["server", "other"])
+        #expect(h.items[0].isPinned)
+        #expect(h.items[0].useCount == 2)
+    }
+
+    @Test func clearKeepsPinned() {
+        var h = History()
+        h.add("keep")
+        h.togglePin(id: h.items[0].id)
+        h.add("drop")
+        h.clear()
+        #expect(h.items.map(\.text) == ["keep"])
     }
 }
 

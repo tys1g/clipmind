@@ -11,6 +11,7 @@ struct ClipItem: Codable, Identifiable, Equatable {
     var sourceApp: String?
     var useCount: Int
     var type: ContentType
+    var isPinned: Bool
     
     init(
         id: UUID = UUID(),
@@ -25,6 +26,7 @@ struct ClipItem: Codable, Identifiable, Equatable {
         self.lastUsedAt = createdAt
         self.useCount = 1
         self.type = ContentDetector.detect(text)
+        self.isPinned = false
     }
     
     init(from decoder: Decoder) throws {
@@ -36,6 +38,7 @@ struct ClipItem: Codable, Identifiable, Equatable {
             sourceApp = try c.decodeIfPresent(String.self, forKey: .sourceApp)
             useCount = try c.decode(Int.self, forKey: .useCount)
             type = try c.decodeIfPresent(ContentType.self, forKey: .type) ?? ContentDetector.detect(text)
+            isPinned = try c.decodeIfPresent(Bool.self, forKey: .isPinned) ?? false
         }
     
     var title: String {
