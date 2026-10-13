@@ -10,6 +10,7 @@ struct ClipItem: Codable, Identifiable, Equatable {
     var lastUsedAt: Date
     var sourceApp: String?
     var useCount: Int
+    var type: ContentType
     
     init(
         id: UUID = UUID(),
@@ -23,7 +24,19 @@ struct ClipItem: Codable, Identifiable, Equatable {
         self.sourceApp = sourceApp
         self.lastUsedAt = createdAt
         self.useCount = 1
+        self.type = ContentDetector.detect(text)
     }
+    
+    init(from decoder: Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            id = try c.decode(UUID.self, forKey: .id)
+            text = try c.decode(String.self, forKey: .text)
+            createdAt = try c.decode(Date.self, forKey: .createdAt)
+            lastUsedAt = try c.decode(Date.self, forKey: .lastUsedAt)
+            sourceApp = try c.decodeIfPresent(String.self, forKey: .sourceApp)
+            useCount = try c.decode(Int.self, forKey: .useCount)
+            type = try c.decodeIfPresent(ContentType.self, forKey: .type) ?? ContentDetector.detect(text)
+        }
     
     var title: String {
         let firstLine = text.split(whereSeparator: \.isNewline).first { !$0.trimmingCharacters(in: .whitespaces).isEmpty }

@@ -66,4 +66,21 @@ struct HistoryTests {
     @Test func titleIsFirstNonEmptyLine() {
         #expect(ClipItem(text: "\n\n  hello world \nsecond").title == "hello world")
     }
+    
+    @Test func decodesLegacyItemWithoutType() throws {
+        let json = """
+        {
+          "id": "E621E1F8-C36C-495A-93FC-0C247A3E6E5F",
+          "text": "https://example.com",
+          "createdAt": "2026-10-13T10:00:00Z",
+          "lastUsedAt": "2026-10-13T10:00:00Z",
+          "useCount": 1
+        }
+        """
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let item = try decoder.decode(ClipItem.self, from: Data(json.utf8))
+        #expect(item.type == .link)
+    }
 }
+
