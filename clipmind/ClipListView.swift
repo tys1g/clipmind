@@ -99,6 +99,7 @@ struct ClipRow: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 10) {
+            TypeBadge(item: item, isSelected: isSelected)
             VStack(alignment: .leading, spacing: 3) {
                 Text(item.title)
                     .lineLimit(2)
@@ -125,5 +126,45 @@ struct ClipRow: View {
             RoundedRectangle(cornerRadius: 6)
                 .fill(isSelected ? Color.accentColor : Color.clear)
         )
+    }
+}
+
+struct TypeBadge: View {
+    let item: ClipItem
+    let isSelected: Bool
+
+    var body: some View {
+        Group {
+            if item.type == .color, let color = Color(hex: item.text) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(color)
+                    .overlay(RoundedRectangle(cornerRadius: 4).stroke(.white.opacity(0.4), lineWidth: 1))
+                    .frame(width: 14, height: 14)
+            } else {
+                Image(systemName: item.type.symbol)
+                    .font(.system(size: 12))
+                    .foregroundStyle(isSelected ? Color.white.opacity(0.9) : Color.secondary)
+            }
+        }
+        .frame(width: 18, height: 18)
+        .padding(.top, 1)
+        .help(item.type.label)
+    }
+}
+
+extension Color {
+    init?(hex: String) {
+        var s = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard s.hasPrefix("#") else { return nil }
+        s.removeFirst()
+        if s.count == 3 { s = s.map { "\($0)\($0)" }.joined() } 
+        guard s.count == 6 || s.count == 8, let value = UInt64(s, radix: 16) else { return nil }
+
+        let hasAlpha = s.count == 8
+        let r = Double((value >> (hasAlpha ? 24 : 16)) & 0xFF) / 255
+        let g = Double((value >> (hasAlpha ? 16 : 8)) & 0xFF) / 255
+        let b = Double((value >> (hasAlpha ? 8 : 0)) & 0xFF) / 255
+        let a = hasAlpha ? Double(value & 0xFF) / 255 : 1
+        self.init(.sRGB, red: r, green: g, blue: b, opacity: a)
     }
 }
