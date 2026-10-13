@@ -72,6 +72,14 @@ final class PanelController {
         case 125:                                   // ↓
             model.move(1)
             return true
+        case 35 where command:
+            if let item = model.selectedItem {
+                store.togglePin(id: item.id)
+                if let newIndex = model.results.firstIndex(where: { $0.id == item.id }) {
+                    model.selected = newIndex
+                }
+            }
+            return true
         case 126:                                   // ↑
             model.move(-1)
             return true

@@ -74,6 +74,7 @@ struct ClipListView: View {
         HStack(spacing: 14) {
             hint("↵", "вставить")
             hint("⌘1–9", "быстро")
+            hint("⌘P", "закрепить")
             hint("⌘⌫", "удалить")
             hint("esc", "закрыть")
             Spacer()
@@ -113,6 +114,11 @@ struct ClipRow: View {
                 .foregroundStyle(isSelected ? Color.white.opacity(0.8) : Color.secondary)
             }
             Spacer(minLength: 8)
+            if item.isPinned {
+                Image(systemName: "pin.fill")
+                    .font(.system(size: 10))
+                    .foregroundStyle(isSelected ? Color.white.opacity(0.8) : Color.orange)
+            }
             if index < 9 {
                 Text("⌘\(index + 1)")
                     .font(.system(size: 11, weight: .medium))

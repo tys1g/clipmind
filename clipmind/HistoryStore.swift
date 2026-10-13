@@ -24,6 +24,11 @@ final class HistoryStore {
         history.remove(id: id)
         commit()
     }
+    
+    func togglePin(id: UUID) {
+            history.togglePin(id: id)
+            commit()
+    }
 
     func clear() {
         history.clear()

@@ -52,7 +52,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func clearHistory() {
         let alert = NSAlert()
         alert.messageText = "Очистить всю историю?"
-        alert.informativeText = "Это действие нельзя отменить."
+        alert.informativeText = "Закреплённые записи останутся. Это действие нельзя отменить."
         alert.addButton(withTitle: "Очистить")
         alert.addButton(withTitle: "Отмена")
         NSApp.activate()
