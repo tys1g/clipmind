@@ -4,13 +4,18 @@ import AppKit
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private var monitor: ClipboardMonitor!
+    private let store = HistoryStore()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupStatusItem()
-        monitor = ClipboardMonitor { text, sourceApp in
-            print("📋 [\(sourceApp ?? "?")] \(text.prefix(80))")
-        }
-        monitor.start()
+        monitor = ClipboardMonitor { [weak self] text, sourceApp in
+                    self?.store.add(text, sourceApp: sourceApp)
+                    print("📋 в истории: \(self?.store.items.count ?? 0)")
+                }
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        store.saveNow()
     }
 
     private func setupStatusItem() {
