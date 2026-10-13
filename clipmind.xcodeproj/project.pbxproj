@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		6D648D3D307E8AB2001A43A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D648D16307E82FD001A43A2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D648D1D307E82FD001A43A2;
+			remoteInfo = clipmind;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		6D648D1E307E82FD001A43A2 /* clipmind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clipmind.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D648D39307E8AB2001A43A2 /* clipmindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clipmindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = clipmind;
 			sourceTree = "<group>";
 		};
+		6D648D3A307E8AB2001A43A2 /* clipmindTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = clipmindTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6D648D1B307E82FD001A43A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D648D36307E8AB2001A43A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				6D648D20307E82FD001A43A2 /* clipmind */,
+				6D648D3A307E8AB2001A43A2 /* clipmindTests */,
 				6D648D1F307E82FD001A43A2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				6D648D1E307E82FD001A43A2 /* clipmind.app */,
+				6D648D39307E8AB2001A43A2 /* clipmindTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = 6D648D1E307E82FD001A43A2 /* clipmind.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6D648D38307E8AB2001A43A2 /* clipmindTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D648D3F307E8AB2001A43A2 /* Build configuration list for PBXNativeTarget "clipmindTests" */;
+			buildPhases = (
+				6D648D35307E8AB2001A43A2 /* Sources */,
+				6D648D36307E8AB2001A43A2 /* Frameworks */,
+				6D648D37307E8AB2001A43A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D648D3E307E8AB2001A43A2 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6D648D3A307E8AB2001A43A2 /* clipmindTests */,
+			);
+			name = clipmindTests;
+			packageProductDependencies = (
+			);
+			productName = clipmindTests;
+			productReference = 6D648D39307E8AB2001A43A2 /* clipmindTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					6D648D1D307E82FD001A43A2 = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					6D648D38307E8AB2001A43A2 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 6D648D1D307E82FD001A43A2;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				6D648D1D307E82FD001A43A2 /* clipmind */,
+				6D648D38307E8AB2001A43A2 /* clipmindTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6D648D1C307E82FD001A43A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D648D37307E8AB2001A43A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6D648D35307E8AB2001A43A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D648D3E307E8AB2001A43A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D648D1D307E82FD001A43A2 /* clipmind */;
+			targetProxy = 6D648D3D307E8AB2001A43A2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6D648D27307E82FE001A43A2 /* Debug */ = {
@@ -323,6 +398,48 @@
 			};
 			name = Release;
 		};
+		6D648D40307E8AB2001A43A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tysigcorp.clipmindTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/clipmind.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/clipmind";
+			};
+			name = Debug;
+		};
+		6D648D41307E8AB2001A43A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tysigcorp.clipmindTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/clipmind.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/clipmind";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -340,6 +457,15 @@
 			buildConfigurations = (
 				6D648D2A307E82FE001A43A2 /* Debug */,
 				6D648D2B307E82FE001A43A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D648D3F307E8AB2001A43A2 /* Build configuration list for PBXNativeTarget "clipmindTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D648D40307E8AB2001A43A2 /* Debug */,
+				6D648D41307E8AB2001A43A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
